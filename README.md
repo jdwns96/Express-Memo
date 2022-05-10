@@ -9,19 +9,22 @@
 ## 설치 패키지
 
 ```
-  npm i express # 익스프레스
-  npm i morgan # 로그 기록
-  npm i nodemon # 자동 재실행
-  npm i cookie-parser # 쿠키 해석
-  npm i express-session # 세션
-  npm i dotenv # 설정파일
-  npm i nunjucks # 템플릿 엔진
-  npm i multer # 멀티파트 폼 데이터 (이미지)
-  npm i pm2 # 배포시 사용하는 로그관리
+  express # 익스프레스
+  morgan # 로그 기록
+  nodemon # 자동 재실행
+  cookie-parser # 쿠키 해석
+  express-session # 세션
+  dotenv # 설정파일
+  nunjucks # 템플릿 엔진
+  multer # 멀티파트 폼 데이터 (이미지)
+  pm2 # 배포시 사용하는 로그관리
+  bcrypt # 암호화
+  mysql2
+  sequelize sequelize-cli
+```
 
-  npm i bcrypt # 암호화
-  npm i mysql2
-  npm i sequelize sequelize-cli
+```
+  npm i express morgan nodemon cookie express dotenv nunjucks multer pm2 bcrypt mysql2 sequelize sequelize-cli
 ```
 
 ## 실행
@@ -59,6 +62,15 @@ docker ps # 실행중인 컨테이너 확인
 
 docker-compose down # 제거
 ```
+
+도커 내부 확인
+
+```
+docker exec -it express-template bash
+mysql -u root -p
+```
+
+혹은 heidiSQL 툴로 접속 확인
 
 ### 앱 서버 실행
 

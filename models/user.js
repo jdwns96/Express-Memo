@@ -20,9 +20,9 @@ module.exports = class User extends Sequelize.Model {
         underscored: false,
         modelName: "User",
         tableName: "users",
-        paranoid: true,
-        charset: "utf8",
-        collate: "utf8_general_ci",
+        paranoid: true, // deletaAt 옵션
+        charset: "utf8", // 한국어 설정
+        collate: "utf8_general_ci", // 이모티콘 추가인듯
       }
     );
   }

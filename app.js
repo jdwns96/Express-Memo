@@ -14,15 +14,16 @@ app.set("port", process.env.PORT || 8080);
 app.use(morgan("dev")); // console 도구
 
 app.use("/", express.static(path.join(__dirname, "public"))); // 정적파일 라우터
+// 넌적스 템플릿 엔진
 nunjucks.configure("page", {
   autoescape: true,
   express: app,
 });
-
 app.set("view engine", "html");
-app.use(express.json()); //요청 처리
+
+app.use(express.json()); // body 정보 처리
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser(process.env.COOKIE_SECRET));
+app.use(cookieParser(process.env.COOKIE_SECRET)); // 쿠키 해석기
 app.use(
   session({
     resave: false,
@@ -34,14 +35,21 @@ app.use(
     },
     name: "session-cookie",
   })
-);
+); // 세션 처리기
 
 app.get("/", (req, res) => {
-  // res.sendFile(path.join(__dirname, "/static/index.html"));
   res.render("index.html", {
-    title: "메인 화면",
+    title: "메모장",
   });
 });
+
+app.get("/login", (req, res) => {
+  res.render("login.html", {
+    title: "로그인",
+  });
+});
+
+app.post("/login", (req, res) => {});
 
 app.listen(app.get("port"), () => {
   console.log(app.get("port"), " : server listening !!");

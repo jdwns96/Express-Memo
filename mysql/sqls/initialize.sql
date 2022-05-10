@@ -1,0 +1,4 @@
+DROP DATABASE IF EXISTS insta;
+
+CREATE DATABASE insta;
+USE insta;

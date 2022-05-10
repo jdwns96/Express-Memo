@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS insta;
+DROP DATABASE IF EXISTS express;
 
-CREATE DATABASE insta;
-USE insta;
+CREATE DATABASE express;
+USE express;

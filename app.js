@@ -7,11 +7,12 @@ const nunjucks = require("nunjucks");
 const path = require("path"); // 경로 설정
 
 dotenv.config();
+
+const { sequelize } = require("./models"); // sequlize
+
 const app = express();
 
 app.set("port", process.env.PORT || 8080);
-
-app.use(morgan("dev")); // console 도구
 
 app.use("/", express.static(path.join(__dirname, "public"))); // 정적파일 라우터
 // 넌적스 템플릿 엔진
@@ -21,6 +22,16 @@ nunjucks.configure("page", {
 });
 app.set("view engine", "html");
 
+sequelize
+  .sync({ force: false })
+  .then(() => {
+    console.log("데이터베이스 연결 성공");
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+
+app.use(morgan("dev")); // console 도구
 app.use(express.json()); // body 정보 처리
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(process.env.COOKIE_SECRET)); // 쿠키 해석기

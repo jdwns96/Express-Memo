@@ -1,0 +1,16 @@
+{
+  "development": {
+    "username": "root",
+    "password": "1234",
+    "database": "express",
+    "host": "127.0.0.1:33306",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": "1234",
+    "database": "express",
+    "host": "127.0.0.1:33306",
+    "dialect": "mysql"
+  }
+}

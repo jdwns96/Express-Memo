@@ -29,12 +29,15 @@ router.post("/join", isNotLoggedIn, async (req, res, next) => {
 
 router.post("/login", isNotLoggedIn, (req, res, next) => {
   passport.authenticate("local", (authError, user, info) => {
+    console.log(info);
+    console.log(user);
     if (authError) {
       console.error(authError);
       return next(authError);
     }
     if (!user) {
-      return res.redirect(`/?login=${info.message}`);
+      return res.redirect(`/login?error=${info.message}`);
+      // return res.redirect(`/?login=error`);
     }
     return req.login(user, (loginError) => {
       if (loginError) {
@@ -45,6 +48,12 @@ router.post("/login", isNotLoggedIn, (req, res, next) => {
       return res.redirect("/");
     });
   })(req, res, next); // 미들웨어 내의 미들웨어에는 (req, res, next)를 붙입니다.
+});
+
+router.get("/logout", isLoggedIn, (req, res) => {
+  req.logout();
+  req.session.destroy();
+  res.redirect("/login");
 });
 
 module.exports = router;

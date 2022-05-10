@@ -39,7 +39,7 @@
      * 이미 존재하는 이메일일 경우 경고 문자 생성하는 함수
      * @param {HTMLElement} $parent
      */
-    function $loginFailMessage($parent) {
+    function $joinFailMessage($parent) {
       var $div = document.createElement("div");
       var textNode = document.createTextNode("이미 존재하는 이메일 입니다.");
       $div.append(textNode);
@@ -48,7 +48,7 @@
 
     if (new URL(location.href).searchParams.get("error")) {
       const $btn = document.querySelector(".form__submit");
-      $loginFailMessage($btn);
+      $joinFailMessage($btn);
     }
   };
 </script>

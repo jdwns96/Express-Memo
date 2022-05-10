@@ -8,6 +8,9 @@
     <title>{{ title }}</title>
   </head>
   <body>
+    <!-- header -->
+    {% include "template/header.html" %}
+    <!-- header -->
     <form
       action="http://localhost:9999/login"
       accept-charset="utf-8"
@@ -22,6 +25,9 @@
       </div>
     </form>
     <a href="/join">회원가입</a>
+    <!-- footer -->
+    {% include "template/footer.html" %}
+    <!-- footer -->
   </body>
   <script src="/js/index.js"></script>
 </html>

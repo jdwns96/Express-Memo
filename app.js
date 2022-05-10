@@ -5,6 +5,8 @@ const session = require("express-session");
 const dotenv = require("dotenv");
 const nunjucks = require("nunjucks");
 const path = require("path"); // 경로 설정
+const bcrypt = require("bcrypt");
+const User = require("./models/user");
 
 dotenv.config();
 
@@ -58,6 +60,32 @@ app.get("/login", (req, res) => {
   res.render("login.html", {
     title: "로그인",
   });
+});
+
+app.get("/join", (req, res) => {
+  res.render("join.html", {
+    title: "회원가입",
+  });
+});
+
+app.post("/join", async (req, res) => {
+  console.log(req.body);
+  const { email, password } = req.body;
+  try {
+    const exUser = await User.findOne({ where: { email } });
+    if (exUser) {
+      return res.redirect("/join?error=exist");
+    }
+    const hash = await bcrypt.hash(password, 12);
+    await User.create({
+      email,
+      password: hash,
+    });
+    return res.redirect("/login");
+  } catch (e) {
+    console.error(e);
+    return next(e);
+  }
 });
 
 app.post("/login", (req, res) => {});

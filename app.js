@@ -5,15 +5,17 @@ const session = require("express-session");
 const dotenv = require("dotenv");
 const nunjucks = require("nunjucks");
 const path = require("path"); // 경로 설정
+const passport = require("passport");
 
+const { sequelize } = require("./models"); // sequlize
+const passportConfig = require("./passport");
 const router = require("./routes");
 
 dotenv.config();
 
-const { sequelize } = require("./models"); // sequlize
-
 const app = express();
 
+passportConfig(); // 패스포트 설정
 app.set("port", process.env.PORT || 8080);
 
 app.use("/", express.static(path.join(__dirname, "public"))); // 정적파일 라우터
@@ -49,6 +51,9 @@ app.use(
     name: "session-cookie",
   })
 ); // 세션 처리기
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use("/", router);
 

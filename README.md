@@ -21,6 +21,7 @@
   bcrypt # 암호화
   mysql2
   sequelize sequelize-cli
+  passport passport-local
 ```
 
 ```

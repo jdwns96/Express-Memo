@@ -8,10 +8,20 @@
     <title>{{ title }}</title>
   </head>
   <body>
-    <p>아이디</p>
-    <input type="text" />
-    <p>비밀번호</p>
-    <input type="password" />
+    <form
+      action="http://localhost:9999/login"
+      accept-charset="utf-8"
+      method="post"
+    >
+      <p>아이디</p>
+      <input type="text" name="email" />
+      <p>비밀번호</p>
+      <input type="password" name="password" />
+      <div>
+        <button type="submit" class="form__submit">로그인</button>
+      </div>
+    </form>
+    <a href="/join">회원가입</a>
   </body>
   <script src="/js/index.js"></script>
 </html>

@@ -1,10 +1,13 @@
 const express = require("express");
+const passport = require("passport");
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
 
+const { isLoggedIn, isNotLoggedIn } = require("./middlewares");
+
 const router = express.Router();
 
-router.route("/join").post(async (req, res) => {
+router.post("/join", isNotLoggedIn, async (req, res, next) => {
   console.log(req.body);
   const { email, password } = req.body;
   try {
@@ -22,6 +25,26 @@ router.route("/join").post(async (req, res) => {
     console.error(e);
     return next(e);
   }
+});
+
+router.post("/login", isNotLoggedIn, (req, res, next) => {
+  passport.authenticate("local", (authError, user, info) => {
+    if (authError) {
+      console.error(authError);
+      return next(authError);
+    }
+    if (!user) {
+      return res.redirect(`/?login=${info.message}`);
+    }
+    return req.login(user, (loginError) => {
+      if (loginError) {
+        console.error(loginError);
+        return next(loginError);
+      }
+      // session cookie 를 보내준다.
+      return res.redirect("/");
+    });
+  })(req, res, next); // 미들웨어 내의 미들웨어에는 (req, res, next)를 붙입니다.
 });
 
 module.exports = router;

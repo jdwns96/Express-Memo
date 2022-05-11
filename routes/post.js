@@ -23,13 +23,15 @@ router.post("/post", isLoggedIn, async (req, res) => {
 router.delete("/post/:id", isLoggedIn, async (req, res) => {
   const { id } = req.params;
   console.log(id);
-  const post = await Post.findOne({
+  const exPost = await Post.findOne({
     where: {
       id,
       UserId: req.user.id,
     },
   });
-  console.log("post", post);
+  if (!exPost) {
+    return res.status(403).end();
+  }
   try {
     await Post.destroy({
       where: {

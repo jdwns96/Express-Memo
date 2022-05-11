@@ -16,10 +16,16 @@
   
   
   {% for data in datas %} 
-  <article class="m-2">
-    <div>{{data.title}}</div>
-    <div>{{data.content}}</div>
+  <a href="/post/{{data.id}}" style="text-decoration: none;">
+  <article class="m-2 p-2 border">
+    <div>제목 : {{data.title}}</div>
+    <div>내용 : {{data.content}}</div>
+    <div class="d-flex">
+      <div>수정</div>
+      <div>삭제</div>
+    </div>
   </artic>
+</a>
   {% endfor %}
 </main>
 

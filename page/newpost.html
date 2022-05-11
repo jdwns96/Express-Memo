@@ -12,8 +12,17 @@
 <!-- header -->
 
 <!-- content -->
-<div>글작성 화면</div>
-<div id="editor"></div>
+<article>
+  <div>글작성 화면</div>
+  <div><input type="text" class="post__title" /></div>
+  <div id="editor"></div>
+  <div>
+    <a href="/">
+      <button class="btn btn-warning">취소</button>
+    </a>
+    <button class="btn btn-success post__save">저장</button>
+  </div>
+</article>
 <!-- content -->
 
 <script>
@@ -23,8 +32,18 @@
     height: "500px",
     initialEditType: "markdown",
     previewStyle: "vertical",
+    // initialValue:
   });
   editor.getMarkdown();
+</script>
+<script>
+  const $title = document.querySelector(".post__title");
+  const $saveBtn = document.querySelector(".post__save");
+  $saveBtn.addEventListener("click", (e) => {
+    const editorBody = editor.getMarkdown();
+    console.log($title.value);
+    console.log(editorBody);
+  });
 </script>
 
 <!-- footer -->

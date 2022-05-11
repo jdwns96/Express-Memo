@@ -1,22 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="/css/global.css" />
-    <title>{{ title }}</title>
-  </head>
-  <body>
-    <!-- header -->
-    {% include "template/header.html" %}
-    <!-- header -->
-
-    <div>포스트 화면</div>
-
-    <!-- footer -->
-    {% include "template/footer.html" %}
-    <!-- footer -->
-  </body>
-  <script src="/js/index.js"></script>
-</html>
+<!--  -->
+{% extends "template/base.html" %}
+<!--  -->
+{% block content %}
+<!-- header -->
+{% include "template/header.html" %}
+<!-- header -->
+<article>
+  <p>
+    <h2>포스트 화면</h2>
+  </p>
+    <div>
+      {{post.content}}
+    </div>
+    <div>
+      <a href="/">
+        <button class="btn btn-success">목록</button>
+      </a>
+    </div>
+  </article>
+<!-- footer -->
+{% include "template/footer.html" %}
+<!-- footer -->
+{% endblock %}

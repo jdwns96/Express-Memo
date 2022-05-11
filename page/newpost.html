@@ -41,15 +41,21 @@
   const $saveBtn = document.querySelector(".post__save");
 
   async function onSubmit(e) {
+    if (!window.confirm("저장 하시겠습니까?")) return null;
     const editorBody = editor.getMarkdown();
     console.log($title.value);
     console.log(editorBody);
 
-    const data = await fetch("/post", {
+    const response = await fetch("/post", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ title: $title.value, body: editorBody }),
     });
+
+    if (response.status === 403) {
+      return alert("잠시후 다시 시도해주세요.");
+    }
+    return (location.href = "/");
   }
 
   $saveBtn.addEventListener("click", onSubmit);

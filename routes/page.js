@@ -46,6 +46,10 @@ router.get("/newpost", isLoggedIn, async (req, res) => {
   });
 });
 
+// router.get("*", (req, res) => {
+//   return res.json({ name: "no page" });
+// });
+
 // app.post("/login", (req, res) => {});
 
 module.exports = router;

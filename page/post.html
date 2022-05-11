@@ -12,20 +12,7 @@
     {% include "template/header.html" %}
     <!-- header -->
 
-    <div>main 화면</div>
-    <a href="/logout">
-      <button>logout</button>
-    </a>
-    <a href="/newpost">
-      <button>글쓰기</button>
-    </a>
-    
-    {% for data in datas %} 
-    <article>
-      <div>{{data.title}}</div>
-      <div>{{data.content}}</div>
-    </artic>
-   {% endfor %}
+    <div>포스트 화면</div>
 
     <!-- footer -->
     {% include "template/footer.html" %}

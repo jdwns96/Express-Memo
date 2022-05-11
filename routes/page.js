@@ -11,7 +11,7 @@ router.use((req, res, next) => {
 });
 
 router.route("/").get(isLoggedIn, async (req, res) => {
-  const post = await Post.findAll({ where: { id: req.user.id } });
+  const post = await Post.findAll({ where: { UserId: req.user.id } });
   console.log(post);
   res.render("index.html", {
     title: "메모장",
@@ -32,7 +32,7 @@ router.route("/join").get(isNotLoggedIn, (req, res) => {
 });
 
 router.route("/post/:id").get(isLoggedIn, async (req, res) => {
-  const post = await Post.findOne({ where: { UserId: req.params.id } });
+  const post = await Post.findOne({ where: { id: req.params.id } });
   console.log(post);
   res.render("post.html", {
     title: "메모장",

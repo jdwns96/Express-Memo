@@ -39,11 +39,20 @@
 <script>
   const $title = document.querySelector(".post__title");
   const $saveBtn = document.querySelector(".post__save");
-  $saveBtn.addEventListener("click", (e) => {
+
+  async function onSubmit(e) {
     const editorBody = editor.getMarkdown();
     console.log($title.value);
     console.log(editorBody);
-  });
+
+    const data = await fetch("/post", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ title: $title.value, body: editorBody }),
+    });
+  }
+
+  $saveBtn.addEventListener("click", onSubmit);
 </script>
 
 <!-- footer -->

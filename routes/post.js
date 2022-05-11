@@ -6,21 +6,19 @@ const { isLoggedIn, isNotLoggedIn } = require("./middlewares");
 const router = express.Router();
 
 router.post("/post", isLoggedIn, async (req, res, next) => {
-  console.log(req.body);
-  const { email, password } = req.body;
+  const { title, body } = req.body;
   try {
-    const exUser = await User.findOne({ where: { email } });
-    if (exUser) {
-      return res.redirect("/join?error=exist");
-    }
-    const hash = await bcrypt.hash(password, 12);
-    await User.create({
-      email,
-      password: hash,
+    // return res.redirect("/login");
+    await Post.create({
+      title,
+      content: body,
+      UserId: req.user.id,
     });
-    return res.redirect("/login");
+    return res.redirect("/");
   } catch (e) {
     console.error(e);
     return next(e);
   }
 });
+
+module.exports = router;

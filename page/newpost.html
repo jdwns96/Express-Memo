@@ -1,38 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="/css/global.css" />
-    <link
-      rel="stylesheet"
-      href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css"
-    />
-    <title>{{ title }}</title>
-  </head>
-  <body>
-    <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
-    <!-- header -->
-    {% include "template/header.html" %}
-    <!-- header -->
+<!-- base -->
+{% extends "template/base.html" %}
+<!-- base -->
+{% block content %}
+<link
+  rel="stylesheet"
+  href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css"
+/>
+<script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+<!-- header -->
+{% include "template/header.html" %}
+<!-- header -->
 
-    <div>글작성 화면</div>
-    <div id="editor"></div>
+<!-- content -->
+<div>글작성 화면</div>
+<div id="editor"></div>
+<!-- content -->
 
-    <!-- footer -->
-    {% include "template/footer.html" %}
-    <!-- footer -->
-  </body>
-  <script src="/js/index.js"></script>
-  <script>
-    const Editor = toastui.Editor;
-    const editor = new Editor({
-      el: document.querySelector("#editor"),
-      height: "500px",
-      initialEditType: "markdown",
-      previewStyle: "vertical",
-    });
-    editor.getMarkdown();
-  </script>
-</html>
+<script>
+  const Editor = toastui.Editor;
+  const editor = new Editor({
+    el: document.querySelector("#editor"),
+    height: "500px",
+    initialEditType: "markdown",
+    previewStyle: "vertical",
+  });
+  editor.getMarkdown();
+</script>
+
+<!-- footer -->
+{% include "template/footer.html" %}
+<!-- footer -->
+{% endblock %}

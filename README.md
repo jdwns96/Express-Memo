@@ -2,8 +2,8 @@
 
 ## 구현목록
 
-- session 을 이용한 로그인 처리
-- sequlize
+- session 을 이용한 로그인 처리 (passport)
+- sequlize , mysql(docker)
 - 메모장 CRUD
 
 ## 설치 패키지

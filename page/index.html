@@ -6,22 +6,22 @@
 {% include "template/header.html" %}
 <!-- header -->
 <!-- content -->
-<div>main 화면</div>
-<a href="/logout">
-  <button>logout</button>
-</a>
-<a href="/newpost">
-  <button>글쓰기</button>
-</a>
+<main>
 
-<button class="btn btn-warning">++++</button>
-
-{% for data in datas %} 
-<article class="m-2">
-  <div>{{data.title}}</div>
-  <div>{{data.content}}</div>
-</artic>
-{% endfor %}
+  <div>main 화면</div>
+  
+  <a href="/newpost">
+    <button class="btn btn-success">글쓰기</button>
+  </a>
+  
+  
+  {% for data in datas %} 
+  <article class="m-2">
+    <div>{{data.title}}</div>
+    <div>{{data.content}}</div>
+  </artic>
+  {% endfor %}
+</main>
 
 <!-- content -->
 <!-- footer -->

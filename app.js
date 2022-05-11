@@ -21,8 +21,10 @@ app.set("port", process.env.PORT || 8080);
 app.use("/", express.static(path.join(__dirname, "public"))); // 정적파일 라우터
 // 넌적스 템플릿 엔진
 nunjucks.configure("page", {
+  noCache: true,
   autoescape: true,
   express: app,
+  watch: true,
 });
 app.set("view engine", "html");
 

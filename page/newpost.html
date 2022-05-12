@@ -14,7 +14,7 @@
 <!-- content -->
 <article>
   <div>글작성 화면</div>
-  <div><input type="text" class="post__title" /></div>
+  <div><input type="text" class="post__title" value="{{data.title}}" /></div>
   <div id="editor"></div>
   <div>
     <a href="/">
@@ -26,13 +26,15 @@
 <!-- content -->
 
 <script>
+  const initialValue = "{{data.content}}";
+
   const Editor = toastui.Editor;
   const editor = new Editor({
     el: document.querySelector("#editor"),
     height: "500px",
     initialEditType: "markdown",
     previewStyle: "vertical",
-    // initialValue:
+    initialValue: initialValue,
   });
   editor.getMarkdown();
 </script>

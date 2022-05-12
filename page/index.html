@@ -15,28 +15,48 @@
 
   {% for data in datas %}
   <article class="post m-2 p-2 border">
+    <input type="hidden" value="{{data.id}}" class="post-id" />
     <div>제목 : {{data.title}}</div>
     <div>내용 : {{data.content}}</div>
     <div class="d-flex justify-content-end">
-      <button class="btn btn-warning mx-2">수정</button>
-      <button class="post__delete-btn btn btn-danger mx-2">
-        <input type="hidden" value="{{data.id}}" class="post-id" />
-        삭제
-      </button>
+      <button class="post__update-btn btn btn-warning mx-2">수정</button>
+      <button class="post__delete-btn btn btn-danger mx-2">삭제</button>
     </div>
   </article>
   {% endfor %}
 </main>
 <!-- content -->
 <script>
+  const $posts = document.querySelectorAll(".post");
+  const $updateBtns = document.querySelectorAll(".post__update-btn");
   const $deleteBtns = document.querySelectorAll(".post__delete-btn");
+
+  $posts.forEach(($post) => {
+    $post.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const postId = $post.querySelector(".post-id").value;
+      return (location.href = `/post/${postId}`);
+    });
+  });
+
+  $updateBtns.forEach(($btn, _) => {
+    $btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+
+      const postId =
+        $btn.parentElement.parentElement.querySelector(".post-id").value;
+
+      return (location.href = `/newpost/${postId}`);
+    });
+  });
 
   $deleteBtns.forEach(function ($btn, _) {
     $btn.addEventListener("click", async function (e) {
       e.stopPropagation();
       if (!window.confirm("정말 삭제하시겠습니까?")) return null;
 
-      const postId = $btn.querySelector(".post-id").value;
+      const postId =
+        $btn.parentElement.parentElement.querySelector(".post-id").value;
       console.log(postId);
 
       try {

@@ -33,6 +33,9 @@ router.route("/join").get(isNotLoggedIn, (req, res) => {
 
 router.route("/post/:id").get(isLoggedIn, async (req, res) => {
   const post = await Post.findOne({ where: { id: req.params.id } });
+  if (!post) {
+    return res.redirect("/");
+  }
   console.log(post);
   res.render("post.html", {
     title: "메모장",
@@ -43,6 +46,17 @@ router.route("/post/:id").get(isLoggedIn, async (req, res) => {
 router.get("/newpost", isLoggedIn, async (req, res) => {
   res.render("newpost.html", {
     title: "글쓰기",
+  });
+});
+
+router.get("/newpost/:id", isLoggedIn, async (req, res) => {
+  const post = await Post.findOne({ where: { id: req.params.id } });
+  if (!post) {
+    return res.redirect("/");
+  }
+  res.render("newpost.html", {
+    title: "글쓰기",
+    data: post,
   });
 });
 

@@ -14,4 +14,22 @@ try {
   fs.mkdirSync("uploads");
 }
 
+const upload = multer({
+  storage: multer.diskStorage({
+    destination(req, file, cb) {
+      cb(null, "uploads/"); // uploads 폴더에 이미지 저장을 할것이다.
+    },
+    filename(req, file, cb) {
+      const ext = path.extname(file.originalname);
+      cb(null, path.basename(file.originalname, ext) + Date.now() + ext); //덮어 씌우기를 막기위해 날짜이름
+    },
+  }),
+  limits: { fileSize: 5 * 1024 * 1024 },
+});
+
+router.post("/img", isLoggedIn, upload.single("img"), (req, res) => {
+  console.log(req.file);
+  res.json({ url: `/img/${req.file.filename}` });
+});
+
 module.exports = router;

@@ -60,6 +60,13 @@ router.get("/newpost/:id", isLoggedIn, async (req, res) => {
   });
 });
 
+router.get("/info", isLoggedIn, async (req, res) => {
+  res.render("info.html", {
+    title: "정보",
+    user: req.user,
+  });
+});
+
 // router.get("*", (req, res) => {
 //   return res.json({ name: "no page" });
 // });

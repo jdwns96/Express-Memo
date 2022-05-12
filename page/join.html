@@ -3,7 +3,7 @@
 <!-- base -->
 {% block content %}
 
-<form action="http://localhost:9999/join" accept-charset="utf-8" method="post">
+<!-- <form action="http://localhost:9999/join" accept-charset="utf-8" method="post">
   <p>회원 가입</p>
   <p>아이디</p>
   <input type="text" name="email" />
@@ -14,7 +14,59 @@
   <div>
     <button type="submit" class="form__submit">전송</button>
   </div>
-</form>
+</form> -->
+
+<link rel="stylesheet" type="text/css" href="/css/login.css" />
+
+<div id="login" class="container">
+  <div id="login-row" class="row justify-content-center align-items-center">
+    <div id="login-column" class="col-md-6 border">
+      <div id="login-box" class="col-md-12">
+        <form
+          id="login-form"
+          action="http://localhost:9999/join"
+          accept-charset="utf-8"
+          method="post"
+        >
+          <h3 class="mt-4 text-center text-purple">Join</h3>
+          <div class="form-group">
+            <label for="username" class="text-default">Email:</label><br />
+            <input type="text" class="form-control" type="text" name="email" />
+          </div>
+          <div class="form-group">
+            <label for="password" class="text-default">Password:</label><br />
+            <input
+              type="password"
+              name="password"
+              id="password"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <label for="password-check" class="text-default"
+              >Password Check:</label
+            ><br />
+            <input
+              type="password"
+              name="password_check"
+              id="password-check"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <p class="join__text text-danger"></p>
+            <button type="submit" class="form__submit btn btn-success">
+              전송
+            </button>
+            <button class="btn btn-light">
+              <a href="/login"> 취소 </a>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
   window.onload = () => {
@@ -30,8 +82,8 @@
     }
 
     if (new URL(location.href).searchParams.get("error")) {
-      const $btn = document.querySelector(".form__submit");
-      $joinFailMessage($btn);
+      const $text = document.querySelector(".join__text");
+      $joinFailMessage($text);
     }
   };
 </script>

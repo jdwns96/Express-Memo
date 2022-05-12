@@ -3,15 +3,19 @@
 <!-- base -->
 {% block content %}
 
-<main class="">
-  <div>main 화면</div>
+<main class="px-2 pt-2">
+  <div class="d-flex justify-content-between mt-4 mb-3">
+    <div class="">
+      <h3>메모장</h3>
+    </div>
 
-  <a href="/newpost">
-    <button class="btn btn-success">글쓰기</button>
-  </a>
+    <a href="/newpost">
+      <button class="btn btn-success">글쓰기</button>
+    </a>
+  </div>
 
   {% for data in datas %}
-  <article class="post m-2 p-2 border">
+  <article class="post my-2 p-2 border">
     <input type="hidden" value="{{data.id}}" class="post-id" />
     <div>제목 : {{data.title}}</div>
     <div>내용 : {{data.content}}</div>
@@ -20,7 +24,31 @@
       <button class="post__delete-btn btn btn-danger mx-2">삭제</button>
     </div>
   </article>
-  {% endfor %}
+  {% endfor %} Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis,
+  veritatis. Doloremque dolore suscipit quibusdam, odit deleniti quae labore
+  nulla reiciendis sint, modi tenetur amet consectetur ratione vel eos fugit
+  quis! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis,
+  veritatis. Doloremque dolore suscipit quibusdam, odit deleniti quae labore
+  nulla reiciendis sint, modi tenetur amet consectetur ratione vel eos fugit
+  quis! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis,
+  veritatis. Doloremque dolore suscipit quibusdam, odit deleniti quae labore
+  nulla reiciendis sint, modi tenetur amet consectetur ratione vel eos fugit
+  quis! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis,
+  veritatis. Doloremque dolore suscipit quibusdam, odit deleniti quae labore
+  nulla reiciendis sint, modi tenetur amet consectetur ratione vel eos fugit
+  quis! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis,
+  veritatis. Doloremque dolore suscipit quibusdam, odit deleniti quae labore
+  nulla reiciendis sint, modi tenetur amet consectetur ratione vel eos fugit
+  quis! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis,
+  veritatis. Doloremque dolore suscipit quibusdam, odit deleniti quae labore
+  nulla reiciendis sint, modi tenetur amet consectetur ratione vel eos fugit
+  quis! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis,
+  veritatis. Doloremque dolore suscipit quibusdam, odit deleniti quae labore
+  nulla reiciendis sint, modi tenetur amet consectetur ratione vel eos fugit
+  quis! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis,
+  veritatis. Doloremque dolore suscipit quibusdam, odit deleniti quae labore
+  nulla reiciendis sint, modi tenetur amet consectetur ratione vel eos fugit
+  quis!
 </main>
 
 <script>

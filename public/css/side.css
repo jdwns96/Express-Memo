@@ -1,0 +1,25 @@
+.side {
+  display: none;
+  box-shadow: 0 4px 6px rgb(50 50 93 / 11%), 0 1px 3px rgb(0 0 0 / 8%);
+  height: 100vh;
+}
+
+@media screen and (min-width: 769px) {
+  .side {
+    display: block;
+    width: 200px;
+  }
+  .side .side__wrapper {
+    width: 100%;
+  }
+  .side .side__header {
+    color: #000;
+    height: 54px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .side .side__body {
+    overflow: auto;
+  }
+}

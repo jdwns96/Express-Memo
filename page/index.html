@@ -2,10 +2,7 @@
 {% extends "template/base.html" %}
 <!-- base -->
 {% block content %}
-<!-- header -->
-{% include "template/header.html" %}
-<!-- header -->
-<!-- content -->
+
 <main class="">
   <div>main 화면</div>
 
@@ -25,7 +22,7 @@
   </article>
   {% endfor %}
 </main>
-<!-- content -->
+
 <script>
   const $posts = document.querySelectorAll(".post");
   const $updateBtns = document.querySelectorAll(".post__update-btn");
@@ -75,7 +72,4 @@
   });
 </script>
 
-<!-- footer -->
-{% include "template/footer.html" %}
-<!-- footer -->
 {% endblock %}

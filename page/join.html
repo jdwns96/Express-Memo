@@ -2,10 +2,7 @@
 {% extends "template/base.html" %}
 <!-- base -->
 {% block content %}
-<!-- header -->
-{% include "template/header.html" %}
-<!-- header -->
-<!-- content -->
+
 <form action="http://localhost:9999/join" accept-charset="utf-8" method="post">
   <p>회원 가입</p>
   <p>아이디</p>
@@ -18,10 +15,7 @@
     <button type="submit" class="form__submit">전송</button>
   </div>
 </form>
-<!-- content -->
-<!-- footer -->
-{% include "template/footer.html" %}
-<!-- footer -->
+
 <script>
   window.onload = () => {
     /**

@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="/css/global.css" />
+    <link rel="stylesheet" type="text/css" href="/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="/css/header.css" />
+    <link rel="stylesheet" type="text/css" href="/css/footer.css" />
     <link
       rel="stylesheet"
       href="/bootstrap-4.6.1-dist/css/bootstrap-grid.min.css"
@@ -19,6 +22,20 @@
   <body>
     <script src="/js/jquery.js"></script>
     <script src="/bootstrap-4.6.1-dist/js/bootstrap.bundle.min.js"></script>
-    {% block content %}{% endblock %}
+    <div class="base">
+      <!-- header -->
+      {% include "template/header.html" %}
+      <!-- header -->
+      <!-- content -->
+      <div class="body">
+        <div class="body__wrapper mx-auto">
+          {% block content %}{% endblock %}
+        </div>
+      </div>
+      <!-- content -->
+      <!-- footer -->
+      {% include "template/footer.html" %}
+      <!-- footer -->
+    </div>
   </body>
 </html>

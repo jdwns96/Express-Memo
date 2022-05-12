@@ -1,0 +1,12 @@
+.footer {
+  background-color: #563d7c;
+  color: #fff;
+}
+
+.footer .footer__wrapper {
+  width: 100%;
+  max-width: 1024px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+}

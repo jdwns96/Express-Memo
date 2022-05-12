@@ -1,0 +1,29 @@
+.footnav {
+  flex: none;
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  height: 52px;
+  background-color: #563d7c;
+}
+
+.footnav .footnav__wrapper {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.footnav .footnav__li {
+}
+.footnav .footnav__a {
+  color: #fff !important;
+}
+
+@media screen and (min-width: 769px) {
+  .footnav {
+    display: none;
+  }
+}

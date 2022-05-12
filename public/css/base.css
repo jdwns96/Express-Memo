@@ -16,4 +16,5 @@
 .body__wrapper {
   padding: 0 2rem;
   max-width: 1024px;
+  height: 100%;
 }

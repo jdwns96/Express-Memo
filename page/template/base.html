@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="/css/side.css" />
     <link rel="stylesheet" type="text/css" href="/css/header.css" />
     <link rel="stylesheet" type="text/css" href="/css/footer.css" />
+    <link rel="stylesheet" type="text/css" href="/css/footnav.css" />
     <link
       rel="stylesheet"
       href="/bootstrap-4.6.1-dist/css/bootstrap-grid.min.css"
@@ -24,35 +25,28 @@
     <script src="/js/jquery.js"></script>
     <script src="/bootstrap-4.6.1-dist/js/bootstrap.bundle.min.js"></script>
     <div class="d-flex">
-      <nav class="side">
-        <div class="side__wrapper">
-          <header class="side__header">LOGO</header>
-          <main class="side__body">
-            <ul>
-              <li class="m-2">
-                <a href="/"> 홈 </a>
-              </li>
-              <li class="m-2">
-                <a href="/"> 정보 </a>
-              </li>
-            </ul>
-          </main>
-        </div>
-      </nav>
+      <!-- sidenav -->
+      {% include "template/sidenav.html" %}
+      <!-- sidenav -->
       <div class="base">
         <!-- header -->
         {% include "template/header.html" %}
         <!-- header -->
-        <!-- content -->
+        <!-- body -->
         <div class="body">
           <div class="body__wrapper mx-auto">
+            <!-- content -->
             {% block content %}{% endblock %}
+            <!-- content -->
           </div>
         </div>
-        <!-- content -->
+        <!-- body -->
         <!-- footer -->
         {% include "template/footer.html" %}
         <!-- footer -->
+        <!-- moblie nav -->
+        {% include "template/footnav.html" %}
+        <!-- moblie nav -->
       </div>
     </div>
   </body>

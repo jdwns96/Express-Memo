@@ -59,7 +59,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use("/", router);
+app.use(router);
 
 app.listen(app.get("port"), () => {
   console.log(app.get("port"), " : server listening !!");

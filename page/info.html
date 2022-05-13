@@ -14,7 +14,7 @@
         <div class="info__profile-img">
           <label for="file" class="m-0 d-inline">
             <img class="info__img" src= "{{ user.img | replace('"', "") |
-            capitalize }}" alt="프로필사진">
+            capitalize }}" alt="">
             <input
               id="file"
               class="info__img-file"
@@ -44,38 +44,54 @@
 </div>
 
 <script>
+  /**
+   * 이미지 변경
+   */
+  function onChangeImage($img) {
+    return function (event) {
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = function (event) {
+        $img.src = event.target.result;
+      };
+    };
+  }
+
+  /**
+   * 저장 버튼
+   */
+  function onSubmitInfomation($file, name, url) {
+    return function (event) {
+      // 저장 확인 검사
+      if (!window.confirm("저장하시겠습니까?")) return null;
+      // 만약 선택한 파일이 없다면 종료
+      if ($file.files.length === 0) return null;
+
+      // console.log($file.files);
+      const formData = new FormData(); // form 데이터 형식 생성
+      formData.append(name, $file.files[0]); // form 형식에 삽입
+      fetch(url, {
+        method: "post",
+        body: formData,
+      })
+        .then((res) => {
+          // 저장 성공시 새로고침
+          location.reload();
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    };
+  }
+
   const $img = document.querySelector(".info__img");
   const $file = document.querySelector(".info__img-file");
-  $file.addEventListener("change", (e) => {
-    var reader = new FileReader();
-    reader.readAsDataURL(e.target.files[0]);
-
-    reader.onload = function (event) {
-      $img.src = event.target.result;
-    };
-  });
-
   const $submitBtn = document.querySelector("#submit-btn");
-  $submitBtn.addEventListener("click", (e) => {
-    // 저장 확인 검사
-    if (!window.confirm("저장하시겠습니까?")) return null;
-    // 만약 선택한 파일이 없다면 종료
-    if ($file.files.length === 0) return null;
 
-    // console.log($file.files);
-    const formData = new FormData(); // form 데이터 형식 생성
-    formData.append("img", $file.files[0]); // form 형식에 삽입
-    fetch("/img", {
-      method: "post",
-      body: formData,
-    })
-      .then((res) => {
-        // 저장 성공시 새로고침
-        location.reload();
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  });
+  $file.addEventListener("change", onChangeImage($img));
+  $submitBtn.addEventListener(
+    "click",
+    onSubmitInfomation($file, "img", "/img")
+  );
 </script>
 {% endblock %}

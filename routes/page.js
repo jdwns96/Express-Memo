@@ -10,13 +10,31 @@ router.use((req, res, next) => {
   next();
 });
 
-router.route("/").get(isLoggedIn, async (req, res) => {
-  const post = await Post.findAll({ where: { UserId: req.user.id } });
-  console.log(post);
-  res.render("index.html", {
-    title: "메모장",
-    datas: post,
-  });
+router.get("/", isLoggedIn, async (req, res) => {
+  let page = req.query.page || 1; // 페이지 가 없을 경우
+
+  let limit = 5;
+  let offset = 0;
+  if (page > 1) {
+    offset = limit * (page - 1);
+  }
+  try {
+    const post = await Post.findAll({
+      where: { UserId: req.user.id },
+      offset,
+      limit,
+    });
+
+    if (Number(page) < 1) return res.redirect("/"); // 만약 0보다 작을 경우
+    if (post.length === 0) return res.redirect("/"); // 게시글이 존재하지 않을경우
+
+    res.render("index.html", {
+      title: "메모장",
+      datas: post,
+    });
+  } catch (error) {
+    res.redirect("/");
+  }
 });
 
 router.route("/login").get(isNotLoggedIn, (req, res) => {

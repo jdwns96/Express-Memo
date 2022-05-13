@@ -4,10 +4,15 @@
 
 {% block content %}
 <link rel="stylesheet" type="text/css" href="/css/info.css" />
-<div class="body mt-4">
-  <div class="body__wrapper mx-auto">
-    <div class="info__header">
-      <h3>내정보</h3>
+<div class="mt-4">
+  <div class="mx-auto">
+    <div class="info__header d-flex justify-content-between mb-3">
+      <div>
+        <h3>내정보</h3>
+      </div>
+      <button id="submit-btn" type="button" class="btn btn-success">
+        저장
+      </button>
     </div>
     <main class="info mt-4">
       <div class="info__profile mb-2">
@@ -33,11 +38,6 @@
           <div>아이디:</div>
           <div>{{ user.email }}</div>
         </div>
-      </div>
-      <div class="mt-4 d-flex justify-content-end">
-        <button id="submit-btn" type="button" class="btn btn-success">
-          저장
-        </button>
       </div>
     </main>
   </div>
@@ -65,7 +65,7 @@
       // 저장 확인 검사
       if (!window.confirm("저장하시겠습니까?")) return null;
       // 만약 선택한 파일이 없다면 종료
-      if ($file.files.length === 0) return null;
+      if ($file.files.length === 0) return location.reload();
 
       // console.log($file.files);
       const formData = new FormData(); // form 데이터 형식 생성

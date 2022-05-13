@@ -3,48 +3,62 @@
 <!-- base -->
 
 {% block content %}
+<link rel="stylesheet" type="text/css" href="/css/info.css" />
 <main class="info mt-4">
-  <div class="info__header">{{user.id}}</div>
-  <div class="img-preview">
-    <img
-      id="img-preview"
-      src=""
-      style="display: none"
-      width="250"
-      alt="미리보기"
-    />
-    <input id="img-url" type="hidden" name="url" />
+  <div class="info__header">
+    <h3>내정보</h3>
   </div>
-  <div>
-    <label id="img-label" for="img">사진 업로드</label>
-    <input id="img" type="file" accept="image/*" />
-    <button id="twit-btn" type="submit" class="btn btn-success">저장</button>
+  <div class="info__profile">
+    <div class="info__profile-img">
+      <label for="file" class="m-0 d-inline">
+        <img class="info__img" src= "{{ user.img | replace('"', "") | capitalize
+        }}" alt="프로필사진">
+        <input
+          id="file"
+          class="info__img-file"
+          style="display: none"
+          type="file"
+          accept="image/*"
+        />
+      </label>
+    </div>
   </div>
+  <button id="submit-btn" type="button" class="btn btn-success">저장</button>
 </main>
-
 <script>
-  if (document.getElementById("img")) {
-    document.getElementById("img").addEventListener("change", function (e) {
-      const formData = new FormData();
-      console.log(this, this.files);
-      formData.append("img", this.files[0]);
+  const $img = document.querySelector(".info__img");
+  const $file = document.querySelector(".info__img-file");
+  $file.addEventListener("change", (e) => {
+    var reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
 
-      fetch("/img", {
-        method: "post",
-        body: formData,
+    reader.onload = function (event) {
+      $img.src = event.target.result;
+    };
+  });
+
+  const $submitBtn = document.querySelector("#submit-btn");
+  $submitBtn.addEventListener("click", (e) => {
+    // 저장 확인 검사
+    if (!window.confirm("저장하시겠습니까?")) return null;
+    // 만약 선택한 파일이 없다면 종료
+    if ($file.files.length === 0) return null;
+
+    // console.log($file.files);
+    const formData = new FormData(); // form 데이터 형식 생성
+    formData.append("img", $file.files[0]); // form 형식에 삽입
+    fetch("/img", {
+      method: "post",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        // 저장 성공시 새로고침
+        location.reload();
       })
-        .then((res) => res.json())
-        .then((res) => {
-          console.log(res);
-
-          document.getElementById("img-url").value = res.url;
-          document.getElementById("img-preview").src = res.url;
-          document.getElementById("img-preview").style.display = "inline";
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    });
-  }
+      .catch((err) => {
+        console.error(err);
+      });
+  });
 </script>
 {% endblock %}

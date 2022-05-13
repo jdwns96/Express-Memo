@@ -1,0 +1,70 @@
+<ul id="pagi" class="d-flex"></ul>
+<script>
+  const page = "{{ page }}";
+  const totalPage = "{{ totalPage }}";
+  console.log(page, totalPage);
+  const $pagi = document.querySelector("#pagi");
+
+  function $pagination(currentPage, totalPage, $parent) {
+    let $paginationList;
+    const URL = "/";
+    const TOTAL_LETNGHT = 5; // 페이지네이션 에서 최대 보여주는 아이콘 수 ex) 2,3,4,5,6 -> 5개
+
+    const list =
+      totalPage <= TOTAL_LETNGHT
+        ? Array(totalPage).fill(0)
+        : Array(TOTAL_LETNGHT).fill(0);
+
+    console.log(list);
+
+    if (currentPage < TOTAL_LETNGHT / 2) {
+      console.log("1, 2 의 경우 1 ~ 5");
+      $paginationList = list.map((v, i) => {
+        const $li = document.createElement("li");
+        const $a = document.createElement("a");
+        const $text = document.createTextNode(`${i + 1}`);
+        $a.href = URL + `?page=${i + 1}`;
+        // 현재 페이지와 일치할 경우
+        currentPage !== i + 1 ? $li : ($li.style.color = "red");
+        $a.append($text);
+        $li.append($a);
+
+        return $li;
+      });
+    } else if (currentPage > totalPage - 5 / 2) {
+      console.log("끝에서 n-1, n 인 경우");
+      $paginationList = list
+        .map((v, i) => {
+          const $li = document.createElement("li");
+          const $a = document.createElement("a");
+          const $text = document.createTextNode(`${totalPage - i}`);
+          $a.href = URL + `?page=${totalPage - i}`;
+          currentPage !== totalPage - i ? $li : ($li.style.color = "red");
+          $a.append($text);
+          $li.append($a);
+          return $li;
+        })
+        .reverse();
+    } else {
+      console.log("기본 형식");
+      $paginationList = list.map((v, i) => {
+        const $li = document.createElement("li");
+        const $a = document.createElement("a");
+        const $text = document.createTextNode(`${totalPage - i}`);
+        $a.href = URL + `?page=${totalPage - i}`;
+
+        currentPage !== 2 ? $li : ($li.style.color = "red");
+        $a.append($text);
+        $li.append($a);
+        return $li;
+      });
+    }
+
+    console.log($paginationList);
+    $paginationList.forEach(($li, _) => {
+      $parent.append($li);
+    });
+  }
+
+  $pagination(Number(page), Number(totalPage), $pagi);
+</script>

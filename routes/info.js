@@ -27,9 +27,13 @@ const upload = multer({
   limits: { fileSize: 5 * 1024 * 1024 },
 });
 
-router.post("/img", isLoggedIn, upload.single("img"), (req, res) => {
+router.post("/img", isLoggedIn, upload.single("img"), async (req, res) => {
   console.log(req.file);
-  res.json({ url: `/img/${req.file.filename}` });
+  await User.update(
+    { img: `/img/${req.file.filename}` },
+    { where: { id: req.user.id } }
+  );
+  res.status(201).end();
 });
 
 module.exports = router;

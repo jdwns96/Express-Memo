@@ -1,8 +1,8 @@
+<link rel="stylesheet" type="text/css" href="/css/pagi.css" />
 <ul id="pagi" class="d-flex"></ul>
 <script>
   const page = "{{ page }}";
   const totalPage = "{{ totalPage }}";
-  console.log(page, totalPage);
   const $pagi = document.querySelector("#pagi");
 
   function $pagination(currentPage, totalPage, $parent) {
@@ -25,7 +25,7 @@
         const $text = document.createTextNode(`${i + 1}`);
         $a.href = URL + `?page=${i + 1}`;
         // 현재 페이지와 일치할 경우
-        currentPage !== i + 1 ? $li : ($li.style.color = "red");
+        currentPage !== i + 1 ? $li : ($li.style.backgroundColor = "#7952b3");
         $a.append($text);
         $li.append($a);
 
@@ -39,7 +39,9 @@
           const $a = document.createElement("a");
           const $text = document.createTextNode(`${totalPage - i}`);
           $a.href = URL + `?page=${totalPage - i}`;
-          currentPage !== totalPage - i ? $li : ($li.style.color = "red");
+          currentPage !== totalPage - i
+            ? $li
+            : ($li.style.backgroundColor = "#7952b3");
           $a.append($text);
           $li.append($a);
           return $li;
@@ -50,10 +52,12 @@
       $paginationList = list.map((v, i) => {
         const $li = document.createElement("li");
         const $a = document.createElement("a");
-        const $text = document.createTextNode(`${totalPage - i}`);
-        $a.href = URL + `?page=${totalPage - i}`;
+        const $text = document.createTextNode(`${currentPage + (i - 2)}`);
+        $a.href = URL + `?page=${currentPage + (i - 2)}`;
 
-        currentPage !== 2 ? $li : ($li.style.color = "red");
+        currentPage !== currentPage + (i - 2)
+          ? $li
+          : ($li.style.backgroundColor = "#7952b3");
         $a.append($text);
         $li.append($a);
         return $li;

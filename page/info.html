@@ -4,27 +4,45 @@
 
 {% block content %}
 <link rel="stylesheet" type="text/css" href="/css/info.css" />
-<main class="info mt-4">
-  <div class="info__header">
-    <h3>내정보</h3>
-  </div>
-  <div class="info__profile">
-    <div class="info__profile-img">
-      <label for="file" class="m-0 d-inline">
-        <img class="info__img" src= "{{ user.img | replace('"', "") | capitalize
-        }}" alt="프로필사진">
-        <input
-          id="file"
-          class="info__img-file"
-          style="display: none"
-          type="file"
-          accept="image/*"
-        />
-      </label>
+<div class="body mt-4">
+  <div class="body__wrapper mx-auto">
+    <div class="info__header">
+      <h3>내정보</h3>
     </div>
+    <main class="info mt-4">
+      <div class="info__profile mb-2">
+        <div class="info__profile-img">
+          <label for="file" class="m-0 d-inline">
+            <img class="info__img" src= "{{ user.img | replace('"', "") |
+            capitalize }}" alt="프로필사진">
+            <input
+              id="file"
+              class="info__img-file"
+              style="display: none"
+              type="file"
+              accept="image/*"
+            />
+          </label>
+        </div>
+      </div>
+      <div class="text-center">
+        <h3>사진</h3>
+      </div>
+      <div>
+        <div class="d-flex">
+          <div>아이디:</div>
+          <div>{{ user.email }}</div>
+        </div>
+      </div>
+      <div class="mt-4 d-flex justify-content-end">
+        <button id="submit-btn" type="button" class="btn btn-success">
+          저장
+        </button>
+      </div>
+    </main>
   </div>
-  <button id="submit-btn" type="button" class="btn btn-success">저장</button>
-</main>
+</div>
+
 <script>
   const $img = document.querySelector(".info__img");
   const $file = document.querySelector(".info__img-file");

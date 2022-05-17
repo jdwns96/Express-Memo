@@ -58,9 +58,7 @@
             <button type="submit" class="form__submit btn btn-success">
               전송
             </button>
-            <button class="btn btn-light">
-              <a href="/login"> 취소 </a>
-            </button>
+            <button class="cancel-btn btn btn-light">취소</button>
           </div>
         </form>
       </div>
@@ -86,5 +84,13 @@
       $joinFailMessage($text);
     }
   };
+</script>
+<script>
+  const $cancelBtn = document.querySelector(".cancel-btn");
+  $cancelBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    location.href = "/login";
+  });
 </script>
 {% endblock %}

@@ -46,8 +46,8 @@
               class="btn btn-success btn-md"
               value="로그인"
             />
-            <button class="btn btn-light">
-              <a href="/join">회원가입</a>
+            <button class="join-btn btn btn-light">
+              회원가입
             </button>
           </div>
         </form>
@@ -55,5 +55,13 @@
     </div>
   </div>
 </div>
+<script>
+    const $joinBtn = document.querySelector(".join-btn");
+  $joinBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    location.href = "/join";
+  });
+</script>
 
 {% endblock %}

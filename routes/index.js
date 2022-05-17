@@ -7,9 +7,9 @@ const info = require("./info");
 
 const router = express.Router();
 
-router.use(page);
-router.use(auth);
-router.use(post);
-router.use(info);
+router.use("/", page);
+router.use("/", auth);
+router.use("/", post);
+router.use("/", info);
 
 module.exports = router;

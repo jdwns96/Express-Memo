@@ -19,12 +19,15 @@ router.get("/", isLoggedIn, async (req, res) => {
     offset = limit * (page - 1);
   }
   try {
-    // 페이지 전체 조회
-    const Posts = await Post.findAll({ where: { UserId: req.user.id } });
+    // 페이지 전체 조회 (길이)
+    const Posts = await Post.findAll({
+      where: { UserId: req.user.id },
+    });
     let allPostCnt = Posts.length;
     // 선택된 페이지 조회
     const post = await Post.findAll({
       where: { UserId: req.user.id },
+      order: [["id", "DESC"]],
       offset,
       limit,
     });

@@ -2,14 +2,16 @@
 {% extends "template/base.html" %}
 <!--  -->
 {% block content %}
-
+<link
+  rel="stylesheet"
+  href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css"
+/>
+<script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
 <article>
   <p>
     <h2>{{post.title}}</h2>
   </p>
-    <div>
-      {{post.content}}
-    </div>
+    <div id="viewer"></div>
     <div>
       <a href="/">
         <button class="btn btn-success">목록</button>
@@ -17,4 +19,17 @@
     </div>
   </article>
 
+  <script>
+    const initialValue = '{{post.content}}'
+    console.log(initialValue);
+    
+    const viewer = toastui.Editor.factory({
+      el: document.querySelector("#viewer"),
+      viewer: true,
+      height: "500px",
+      initialEditType: "markdown",
+      initialValue: initialValue,
+    });
+
+  </script>
 {% endblock %}

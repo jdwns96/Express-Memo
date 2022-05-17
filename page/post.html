@@ -2,11 +2,8 @@
 {% extends "template/base.html" %}
 <!--  -->
 {% block content %}
-<link
-  rel="stylesheet"
-  href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css"
-/>
-<script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+<link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor-viewer.min.css" />
+<script src="https://uicdn.toast.com/editor/latest/toastui-editor-viewer.js"></script>
 <article>
   <p>
     <h2>{{post.title}}</h2>
@@ -20,16 +17,17 @@
   </article>
 
   <script>
-    const initialValue = '{{post.content}}'
+    const Viewer = toastui.Editor;
+    const initialValue = `{{post.content}}`
     console.log(initialValue);
-    
-    const viewer = toastui.Editor.factory({
-      el: document.querySelector("#viewer"),
-      viewer: true,
-      height: "500px",
-      initialEditType: "markdown",
-      initialValue: initialValue,
+
+    const viewer = new Viewer({
+      el: document.querySelector('#viewer'),
+      height: '600px',
+      initialValue: initialValue
     });
+    
+
 
   </script>
 {% endblock %}
